@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter Product Details</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h3>Current User: {{ username }}</h3>
+    <p>User uu_id: {{ uuid }}</p>
+    <form action="/calculate" method="post">
+      <input type="hidden" name="username" value="{{ username }}">
+      <input type="hidden" name="uuid" value="{{ uuid }}">
+
+      <label for="type">Select Product Type:</label>
+      <select id="type" name="type">
+        {% for t in types %}
+          <option value="{{ t }}">{{ t }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="product">Select Product:</label>
+      <select id="product" name="product">
+        {% for p in products %}
+          <option value="{{ p }}">{{ p }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="quantity">Quantity (1–1000):</label>
+      <select id="quantity" name="quantity">
+        {% for q in range(1, 1001) %}
+          <option value="{{ q }}">{{ q }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="weight">Weight (1–100 kg):</label>
+      <select id="weight" name="weight">
+        {% for w in range(1, 101) %}
+          <option value="{{ w }}">{{ w }}</option>
+        {% endfor %}
+      </select>
+
+      <p>Rate: ₹10 per kg</p>
+
+      <button type="submit">Calculate Tax</button>
+    </form>
+  </div>
+</body>
+</html>
